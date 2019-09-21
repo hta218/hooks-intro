@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import ExCounter from "./After/UseState"
+import Resizer from "./After/UseEffect"
+import ThemedCard from "./After/UseContext"
+import { Router } from "@reach/router"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  
+  return <>
+    <Router>
+      <Home path='/' />
+      <ExCounter path='/use-state' />
+      <Resizer path='/use-effect' />
+      <ThemedCard path='/use-context' />
+    </Router>
+  </>
 }
 
-export default App;
+const Home = () => <div>React Intro</div>
+
+export default App
