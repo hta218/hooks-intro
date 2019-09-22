@@ -1,32 +1,18 @@
-import React from "react"
+import React, { useState } from "react"
 import Switcher from "./Switcher"
 import Card from "./Card"
-import ThemeContext from '../ThemeContext'
+import ThemeContext from "../ThemeContext"
 
-class ThemedCard extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      theme: "dark",
-      toggleTheme: this.toggleTheme
-    }
-  }
+function ThemedCard() {
+  const [theme, setTheme] = useState("light")
+  const toggleTheme = () => setTheme(prevTheme => (prevTheme === "light" ? "dark" : "light"))
 
-  toggleTheme = () => {
-    this.setState(prevState => {
-      return { theme: prevState.theme === "light" ? "dark" : "light" }
-    })
-  }
-
-  render() {
-
-    return (
-      <ThemeContext.Provider value={this.state}>
-        <Card />
-        <Switcher/>
-      </ThemeContext.Provider>
-    )
-  }
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <Card />
+      <Switcher />
+    </ThemeContext.Provider>
+  )
 }
 
 export default ThemedCard
